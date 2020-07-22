@@ -15,9 +15,10 @@ int test = 0x123456;
     else{
         //big endian
     }
-
 }
 
+//이렇게 할 필요없이 기본 제공하는 함수쓰면 빅엔디안에서는 동작하지 않는다. 
+//그러면 아래의 my_hton없이 효율적인 코드 가능
 
 uint32_t my_hton(uint32_t n){  //HBO(little endian) to NBO(big endian)
     uint32_t n1= (n & 0xFF000000)>>24;
@@ -43,6 +44,10 @@ uint32_t num2=0;
 fread(&num1, 4, 1, open1); // read 4byte binary
 fread(&num2, 4, 1, open2);
 
+    //fread의 아이템을 고려해야한다!
+    
+    //지금 이렇게 코드 중복되는 부분 다 정리할 것
+   
 
 if(check_endian()==1){ //check endian and sum
     uint32_t result1 = my_hton(num1);
